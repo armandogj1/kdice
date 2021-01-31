@@ -10,9 +10,10 @@ module.exports = {
         if (!genericWord) {
           throw 'No Word';
         }
-        return Main.find({ word: genericWord }).exec();
+        return Main.findOne({ word: genericWord }).exec();
       })
       .then((translations) => {
+        console.log(translations);
         return translations.slangs.get(toCountry);
       })
       .catch((err) => {
@@ -20,9 +21,10 @@ module.exports = {
       });
   },
   addWord: ({ country, word, generic }) => {
-    return Country.find({ name: country })
+    return Country.findOne({ name: country })
       .exec()
       .then((result) => {
+        console.log(result);
         result.words.set(word, generic);
         return result;
       })
