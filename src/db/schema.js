@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const db = require('./index.js');
 const { Schema } = mongoose;
 
 const countrySchema = new Schema({
@@ -9,6 +10,15 @@ const countrySchema = new Schema({
   },
 });
 
-const Country = mongoose.model('Country', countrySchema);
+const mainSchema = new Schema({
+  word: String,
+  slangs: {
+    type: Map,
+    of: String,
+  },
+});
 
-module.export = Country;
+const Country = mongoose.model('Country', countrySchema);
+const Main = mongoose.model('Main', mainSchema);
+
+module.exports = { Country, Main };
