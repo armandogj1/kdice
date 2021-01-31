@@ -2,6 +2,7 @@ const { Country, Main } = require('../schema.js');
 
 module.exports = {
   getWord: ({ country, word, toCountry }) => {
+    console.table({ country, word, toCountry });
     return Country.findOne({ name: country })
       .exec()
       .then((result) => {
@@ -13,8 +14,10 @@ module.exports = {
         return Main.findOne({ word: genericWord }).exec();
       })
       .then((translations) => {
-        console.log(translations);
-        return translations.slangs.get(toCountry);
+        const data = {};
+        data.to = translations.slangs.get(toCountry);
+        data.word = translations.word;
+        return data;
       })
       .catch((err) => {
         return console.log(err);
