@@ -1,0 +1,39 @@
+.selector {
+  display: flex;
+  flex-direction: column;
+  padding-left: 1em;
+  height: 50px;
+  width: 50%;
+  justify-content: space-evenly;
+  color: white;
+}
+
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: white;
+  opacity: 1; /* Firefox */
+}
+
+.selector select,
+input {
+  border: none;
+  text-decoration: none;
+  color: white;
+  background-color: transparent;
+}
+
+.selector select {
+  padding-left: 1em;
+  width: fit-content;
+}
+
+.selector input {
+  width: 80%;
+  padding-left: 1em;
+}
+
+input:focus,
+select:focus {
+  text-decoration: none;
+  outline: none;
+}
