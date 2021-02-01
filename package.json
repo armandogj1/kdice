@@ -10,7 +10,7 @@
     "clean": "rm dist/bundle.js",
     "build-dev": "webpack --mode development -w",
     "build": "webpack --mode production",
-    "start": "webpack serve --hot --mode development",
+    "start": "node src/server/index.js",
     "serv-dev": "nodemon src/server/index.js",
     "test": "jest"
   },
