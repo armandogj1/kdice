@@ -37,11 +37,11 @@ const App = () => {
           },
         })
         .then(({ data }) => {
-          console.log(data);
           setState((prev) => ({
             ...prev,
             to: data.to,
             generic: data.word,
+            definition: data.definition,
             fetch: false,
           }));
         })

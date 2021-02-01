@@ -2,13 +2,16 @@ const { Country, Main } = require('../schema.js');
 
 module.exports = {
   getWord: ({ country, word, toCountry }) => {
-    console.table({ country, word, toCountry });
     return Country.findOne({ name: country })
       .exec()
       .then((result) => {
-        const genericWord = result.words.get(word);
+        if (!result) {
+          throw 'No Record';
+        }
 
+        const genericWord = result.words.get(word);
         if (!genericWord) {
+          console.log('there is no word', genericWord);
           throw 'No Word';
         }
         return Main.findOne({ word: genericWord }).exec();
@@ -20,7 +23,7 @@ module.exports = {
         return data;
       })
       .catch((err) => {
-        return console.log(err);
+        throw new Error(err);
       });
   },
   addWord: ({ country, word, generic }) => {
@@ -32,7 +35,10 @@ module.exports = {
         return result;
       })
       .then((result) => result.save())
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        throw new Error('Error Saving Word');
+      });
   },
   addCountry: ({ country }) => {
     return Country.create({ name: country, words: {} })
