@@ -32,6 +32,13 @@ input {
   padding-left: 1em;
 }
 
+.selector span {
+  position: absolute;
+  align-self: flex-end;
+  /* margin-left: auto;
+  margin-right: 0; */
+}
+
 input:focus,
 select:focus {
   text-decoration: none;

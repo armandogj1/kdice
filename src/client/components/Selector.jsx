@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import textToSpeech from '../../lib/textToSpeech.js';
 import '../styles/selector.css';
 
 const Paises = ['Colombia', 'Mexico', 'Argentina', 'Venezuela'];
@@ -22,6 +23,10 @@ const Selector = ({ toOrFrom, handleUpdate, answer }) => {
     handleUpdate(key, e.target.value.toLowerCase());
   };
 
+  const handleSpeak = () => {
+    textToSpeech(word || answer);
+  };
+
   return (
     <form className='selector' onSubmit={handleSubmit}>
       <select value={lang} onChange={handleSelect}>
@@ -38,6 +43,7 @@ const Selector = ({ toOrFrom, handleUpdate, answer }) => {
           onChange={handleChange}
         />
       </label>
+      <span onClick={handleSpeak}>📢</span>
     </form>
   );
 };
