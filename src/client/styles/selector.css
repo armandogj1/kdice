@@ -35,8 +35,7 @@ input {
 .selector span {
   position: absolute;
   align-self: flex-end;
-  /* margin-left: auto;
-  margin-right: 0; */
+  padding-right: 1rem;
 }
 
 input:focus,
